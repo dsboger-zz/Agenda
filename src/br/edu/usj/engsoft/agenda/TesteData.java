@@ -5,6 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class TesteData {
+	
+	@Test
+	void dataÉVálida() {
+		Data d1 = new Data(1, 1, 2000);
+		Data d2 = new Data(50, 50, 2000);
+		assertTrue(Data.dataValida(d1));
+		assertFalse(Data.dataValida(d2));
+	}
 
 	@Test
 	void testaCoincideCom1() {

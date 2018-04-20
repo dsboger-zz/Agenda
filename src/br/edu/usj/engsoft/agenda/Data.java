@@ -1,5 +1,10 @@
 package br.edu.usj.engsoft.agenda;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Data implements Comparable<Data> {
 
 	private Integer dia;
@@ -43,6 +48,31 @@ public class Data implements Comparable<Data> {
 		return dia.equals(data.dia) 
 				&& mês.equals(data.mês) 
 				&& ano.equals(data.ano);
+	}
+	
+	public static boolean dataValida(Data data) {
+		String dt = data.toString();
+		DateFormat dta = new SimpleDateFormat ("dd/MM/yyyy");
+		dta.setLenient (false); 
+		try {
+		dta.parse (dt);
+		   return true;
+		} catch (ParseException ex) {
+		   return false;
+		}
+		
+	}
+	
+	public static Boolean éPassado(Data data) {
+		Date dataAtual = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Date data2 = null;
+		try {
+			data2 = format.parse(data.toString());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return dataAtual.after(data2);
 	}
 
 	public Boolean estáNoIntevalo(Data início, Data fim) {

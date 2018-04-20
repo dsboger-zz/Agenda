@@ -14,8 +14,11 @@ public class Agenda {
 	}
 	
 	public Boolean adicionarEvento(Evento e) {
+		if(existeConflitoCom(e)) {
+			return !existeConflitoCom(e);
+		}
 		listaDeEventos.add(e);
-		return !existeConflitoCom(e);
+		return existeConflitoCom(e);
 	}
 	
 	public void mostrarAgenda() {
